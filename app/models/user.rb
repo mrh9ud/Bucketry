@@ -2,4 +2,17 @@ class User < ApplicationRecord
     has_many :user_experiences
     has_many :stories, through: :user_experiences
     has_many :activities, through: :user_experiences
+
+    validates :name, presence: true
+    validate :age_verification
+
+    def age_calculation
+        Time.now.year - self.birthdate.year - ((Time.now.month > self.birthdate.month || (Time.now.month == self.birthdate.month && Time.now.day >= self.birthdate.day)) ? 0 : 1)
+    end
+
+    def age_verification
+        unless self.birthdate.year < Time.now.year
+            errors.add(:birthdate, "must be in the past!")
+        end
+    end
 end
