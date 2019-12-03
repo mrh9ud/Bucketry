@@ -1,0 +1,14 @@
+<ul class='newsfeed'>
+    <% feed_elements.each do |element| %>
+        <% if element.class == User %>
+            <li><%= render partial: 'users/feed_element', locals: {user: element} %></li>
+        <% elsif element.class == Story %>
+            <li><%= render partial: 'stories/feed_element', locals: {story: element} %></li>
+        <% elsif element.class == UserExperience %>
+            <li><%= render partial: 'user_experiences/feed_element', locals: {user_experience: element} %></li>
+        <% else %>
+            <li>Error: Element not found</li>
+        <% end %>
+        <hr>
+    <% end %>
+</ul>

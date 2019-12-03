@@ -1,0 +1,10 @@
+<h1>Welcome to Bucketry</h1>
+<h3>Share Your Bucketlist with Friends and Family</h3>
+
+<div><%= link_to 'Join Bucketry', new_user_path %></div>
+<div><%= link_to 'Our Community', users_path %></div>
+<div><%= link_to 'Stories from Bucketry', stories_path %></div>
+
+<h3>Recent Activity</h3>
+
+<%= render partial: 'newsfeed', locals: {feed_elements: @recent_activities} %>
