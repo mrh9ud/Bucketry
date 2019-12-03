@@ -9,7 +9,6 @@ class ActivitiesController < ApplicationController
     end
 
     def create
-        # byebug
         @activity = Activity.create(activity_params)
         if @activity.valid?
             redirect_to activity_path(@activity)
