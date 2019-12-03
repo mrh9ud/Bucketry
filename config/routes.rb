@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'pages#index'
   resources :stories
   resources :user_experiences
   resources :categories, only: [:index, :create, :new, :show]

@@ -15,4 +15,16 @@ class User < ApplicationRecord
             errors.add(:birthdate, "must be in the past!")
         end
     end
+
+    def possessive_pronoun
+        if self.gender.blank?
+            "their"
+        elsif ['m','male','man','guy'].include?(self.gender.downcase)
+            "his"
+        elsif ['f','female','woman','girl'].include?(self.gender.downcase)
+            "her"
+        else
+            "their"
+        end
+    end
 end
