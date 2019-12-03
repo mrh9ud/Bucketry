@@ -32,4 +32,12 @@ class User < ApplicationRecord
         self.created_at
     end
 
+    def alive?
+        if self.alive
+            "According to recent sources, yes."
+        else
+            "Survey says no."
+        end
+    end
+
 end

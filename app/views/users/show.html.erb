@@ -3,7 +3,32 @@
         <ul>
             <li>Gender: <%= @user.gender %></li>
             <li>Age: <%= @user.age_calculation %></li>
-            <li>Living?: <%= @user.alive %></li>
+            <li>Alive: <%= @user.alive? %></li>
         </ul>
+    <% if !@user.user_experiences.empty? %>
+    <h3>Current Bucketry List</h3>
+        <table>
+            <thead>
+                <tr>
+                    <td>Activity</td>
+                    <td>Completed?</td>
+                    <td>Accomplish by</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% @user.user_experiences.each do |user_experience| %>
+                <tr>
+                    <td><%= link_to user_experience.activity.name, activity_path(user_experience.activity) %></td>
+                    <td><%= user_experience.yes_or_no %></td>
+                    <td><%= user_experience.goal_completion_date %></td>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    <% else %>
+        <p><%= @user.name %>'s Bucketry List is Empty!</p>
+    <% end %>
+
         <%= button_to "Edit Profile", edit_user_path(@user), method: :get %>
         <%= button_to "Users Page", users_path, method: :get %>
+        <%= button_to "Add to Bucket List", new_user_experience_path, method: :get %>

@@ -1,0 +1,10 @@
+<h1>Add to your Bucketry List Below</h1>
+    <%= render partial: "errors/error_form", locals: {obj: @user_experience} %>
+
+    <%= form_for @user_experience do |f| %>
+        <%= f.label :user %>
+        <%= f.collection_select :user_id, User.all, :id, :name %><br>
+
+        <%= f.submit %>
+
+    <% end %>
