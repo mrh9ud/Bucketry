@@ -11,7 +11,7 @@ class User < ApplicationRecord
     end
 
     def age_verification
-        unless self.birthdate.year < Time.now.year
+        unless self.birthdate.year < Time.now.year && !self.birthdate.blank?
             errors.add(:birthdate, "must be in the past!")
         end
     end
@@ -27,4 +27,9 @@ class User < ApplicationRecord
             "their"
         end
     end
+
+    def set_date
+        self.created_at
+    end
+
 end
