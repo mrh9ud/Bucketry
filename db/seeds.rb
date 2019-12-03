@@ -22,8 +22,8 @@ ACTIVITY_OPTS = ["Skydiving", "Run a Marathon", "Publish a Book", "Sleep with a 
     User.create(name: rand_name, birthdate: DateTime.strptime("12/01/2000", "%m/%d/%Y"), gender: GENDERS.sample(), alive: true)
 end
 
-10.times do
-    Activity.create(name: ACTIVITY_OPTS.sample, description: LOREM_IPSUM_SHORT)
+ACTIVITY_OPTS.each do |option|
+    Activity.create(name: option, description: LOREM_IPSUM_SHORT)
 end
 
 50.times do
