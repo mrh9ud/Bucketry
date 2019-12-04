@@ -1,7 +1,8 @@
 class UserExperiencesController < ApplicationController
-
+    
     def new
         @user_experience = UserExperience.new()
+        @activity = Activity.new
     end
 
     def create
@@ -16,6 +17,8 @@ class UserExperiencesController < ApplicationController
     private
 
     def user_experience_params
-        params.require(:user_experience).permit(:user_id, :activity_id, :completed, :completion_date, :goal_date)
+        params.require(:user_experience).permit(:user_id, :activity_id, :completed, :completion_date, :goal_date, activity_attributes: [:name, :description])
     end
+
+
 end

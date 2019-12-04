@@ -2,6 +2,7 @@ class UserExperience < ApplicationRecord
   belongs_to :user
   belongs_to :activity
   has_many :stories
+  accepts_nested_attributes_for :activity
 
   def set_date
       self.updated_at

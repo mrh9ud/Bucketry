@@ -11,4 +11,12 @@ module ApplicationHelper
             element.set_date.strftime("on %B %e")
         end
     end
+
+    def display_any_date(date)
+        if date.to_date == Date.current
+            "today"
+        else 
+            date.strftime("on %B %e")
+        end
+    end
 end
