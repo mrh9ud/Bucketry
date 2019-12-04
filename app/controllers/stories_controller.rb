@@ -11,9 +11,6 @@ class StoriesController < ApplicationController
         @stories = Story.order(created_at: :desc).limit(session[:blog_length]).reverse
     end
 
-    def show
-    end
-
     def new
         @story = Story.new()
     end

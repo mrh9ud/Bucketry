@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <span><%= button_to "Home", root_path, method: :get %></span>
     <% if session[:name] %>
       <span>Hello, <%= session[:name] %><%= button_to "Logout", logout_path, method: :post %></span>
     <% else %>
