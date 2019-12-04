@@ -1,0 +1,14 @@
+<h1>Edit Your Blog Post</h1>
+
+<%= render partial: 'errors/error_form', locals: {obj: @story} %>
+
+<%= form_for @story do |f| %>
+    <%= f.label "Bucket List Item:" %>
+    <%= f.label "#{@story.user_experience.activity_name}" %><br />
+
+    <%= render partial: 'form', locals: {f: f} %>
+
+    <%= f.submit data: {confirm: "Are you sure you want to submit these edits?"} %>
+<% end %>
+
+<%= button_to "Delete this blog post permanently", @story, method: :delete, data: {confirm: "Are you sure you want to delete your story?"} %>

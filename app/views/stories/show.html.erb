@@ -1,0 +1,12 @@
+<h2><%= @story.title %></h2>
+<h5>by <%= link_to @story.user.name, user_path(@story.user) %></h5>
+
+<div class="long_content", id="story_view_content"><%= @story.content %></div>
+
+<div class="short_line", id="story_view_activity_tagline">Activity Mentioned: <%= link_to @story.activity.name, activity_path(@story.activity) %></div>
+
+<% if @story.user.id == session[:user_id] %>
+    <%= button_to "Edit this story", edit_story_path(@story), method: :get %>
+<% end %>
+
+<div><%= link_to 'See more stories from our community', stories_path %></div>
