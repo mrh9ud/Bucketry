@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
     
 
     def index
-        @activities = Activity.all
+        @activities = Activity.sort_by_popularity
     end
 
     def new
