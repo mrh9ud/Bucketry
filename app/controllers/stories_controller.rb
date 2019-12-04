@@ -1,5 +1,6 @@
 class StoriesController < ApplicationController
     before_action :get_story, only: [:show, :edit, :update, :destroy]
+    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
     def index
         if params[:blog_expand]
@@ -23,9 +24,6 @@ class StoriesController < ApplicationController
         else
             render :new
         end
-    end
-
-    def edit
     end
 
     def update

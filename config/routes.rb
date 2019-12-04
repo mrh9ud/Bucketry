@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   resources :users, except: :destroy
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  post '/logout', to: 'sessions#destroy'
+  post '/logout', to: 'sessions#logout'
 end
