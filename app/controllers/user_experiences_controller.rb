@@ -1,4 +1,5 @@
 class UserExperiencesController < ApplicationController
+    before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
     
     def new
         @user_experience = UserExperience.new()

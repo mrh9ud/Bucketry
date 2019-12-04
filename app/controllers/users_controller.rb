@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
     before_action :set_user, only: [:edit, :show, :update]
+    before_action :require_logout, only: [:new, :create]
+    before_action :require_login, only: [:show]
 
     def index
         @users = User.all
