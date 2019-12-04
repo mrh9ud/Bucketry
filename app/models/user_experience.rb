@@ -7,6 +7,10 @@ class UserExperience < ApplicationRecord
       self.updated_at
   end
 
+  def activity_name #method used in collection_select when creating story
+    self.activity.name
+  end
+
   def goal_completion_date
     if self.completed
       self.completion_date
