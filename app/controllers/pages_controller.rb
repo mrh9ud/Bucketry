@@ -6,4 +6,7 @@ class PagesController < ApplicationController
         render :home
     end
 
+    def about
+    end
+
 end

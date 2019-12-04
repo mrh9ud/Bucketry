@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
         user = User.find_by(name: name)
         if user
             session[:name] = params[:name]
+            session[:user_id] = user.id
             log_in(user)
             redirect_to root_path
         else flash["error"] = "No user with that name. Try again."

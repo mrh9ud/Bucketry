@@ -2,21 +2,19 @@
     <%= render partial: "errors/error_form", locals: {obj: @user_experience} %>
 
     <%= form_for @user_experience do |f| %>
-        <%= f.label :user %>
-        <%= f.collection_select :user_id, User.all, :id, :name %><br>
         
-       
+        <h4>Or Create Your Own Bucket List Item</h4>
+        
         <%= f.label :add_an_activity %>
         <%= f.collection_select :activity_id, Activity.all, :id, :name, {include_blank: true} %><br>
-
-        <h4>Or Create Your Own Bucket List Item</h4>
-
+        
         <%= f.fields_for :activity, @activity do |act_f| %>
             <%= act_f.label :name %>
-            <%= act_f.text_field :name %><br>
+            <%= act_f.text_field :name %><br><br>
             <%= act_f.label :description %>
             <%= act_f.text_area :description %><br>
         <% end %>
+            
 
         <%= f.check_box :completed %>
         <%= f.label "Check if already completed" %><br>

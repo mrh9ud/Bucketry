@@ -10,7 +10,19 @@
   </head>
 
   <body>
+
     <span><%= button_to "Home", root_path, method: :get %></span>
+    <span><%= button_to "About Us", about_path, method: :get %></span>
+    <span><%= button_to "Stories", stories_path, method: :get %></span>
+    <span><%= button_to "Community Page", users_path, method: :get %></span>
+    <span><%= button_to "Popular Bucketry List Choices", activities_path, method: :get %></span>
+
+    <% if !session[:name] %>
+    <div><%= button_to 'Join Bucketry', new_user_path, method: :get %></div>
+    <% else %>
+        <div><%= button_to "My Bucketry Profile", user_path(current_user), method: :get %></div>
+    <% end %>
+
     <% if session[:name] %>
       <span>Hello, <%= session[:name] %><%= button_to "Logout", logout_path, method: :post %></span>
     <% else %>

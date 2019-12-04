@@ -2,7 +2,12 @@ class UserExperience < ApplicationRecord
   belongs_to :user
   belongs_to :activity
   has_many :stories
-  accepts_nested_attributes_for :activity
+  accepts_nested_attributes_for :activity, reject_if: :no_more_bad_data
+  # include SessionsHelper
+
+  def no_more_bad_data
+    self.activity_id
+  end
 
   def set_date
       self.updated_at

@@ -4,13 +4,6 @@
     <div class="error"><%= flash["error"] %></div>
 <% end %>
 
-<% if !session[:name] %>
-    <div><%= link_to 'Join Bucketry', new_user_path %></div>
-<% end %>
-
-<div><%= link_to 'Our Community', users_path %></div>
-<div><%= link_to 'Stories from Bucketry', stories_path %></div>
-
 <h3>Share Your Bucketry list with Friends and Family</h3>
 
 <h3>Recent Activity</h3>

@@ -1,9 +1,10 @@
 class ActivitiesController < ApplicationController
     before_action :set_activity, only: [:edit, :update, :show]
     before_action :require_login, only: [:new, :create, :update, :edit]
+    
 
     def index
-        @activities = Activity.all
+        @activities = Activity.sort_by_popularity
     end
 
     def new
