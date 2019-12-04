@@ -6,6 +6,8 @@
 
 <% if !session[:name] %>
     <div><%= link_to 'Join Bucketry', new_user_path %></div>
+<% else %>
+    <div><%= link_to "Your Bucketry Profile", user_path(current_user) %></div>
 <% end %>
 
 <div><%= link_to 'Our Community', users_path %></div>

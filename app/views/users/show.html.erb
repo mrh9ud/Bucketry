@@ -39,4 +39,7 @@
 
 <%= button_to "Edit Profile", edit_user_path(@user), method: :get %>
 <%= button_to "Users Page", users_path, method: :get %>
-<%= button_to "Add to Bucket List", new_user_experience_path, method: :get %>
+<% if @user == current_user %>
+    <%= button_to "Add to Bucket List", new_user_experience_path, method: :get %>
+    <%= button_to "Add a Story to Your Blog", new_story_path, method: :get %>
+<% end %>

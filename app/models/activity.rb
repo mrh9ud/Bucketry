@@ -4,6 +4,7 @@ class Activity < ApplicationRecord
     has_many :user_experiences
     has_many :users, through: :user_experiences
     has_many :stories, through: :user_experiences
-
+    validates :name, :description, presence: true
+    
     
 end
