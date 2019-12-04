@@ -36,8 +36,16 @@ class User < ApplicationRecord
         if self.alive
             "According to recent sources, yes."
         else
-            "Survey says no."
+            "#{self.name} kicked the bucket with #{self.unfinished_bucket.count} items left on #{self.possessive_pronoun} list."
         end
+    end
+
+    def bucket_list
+        self.user_experiences
+    end
+
+    def unfinished_bucket
+        self.bucket_list.where('completed = ?', false)
     end
 
 end

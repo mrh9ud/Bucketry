@@ -5,7 +5,7 @@
             <li>Age: <%= @user.age_calculation %></li>
             <li>Alive: <%= @user.alive? %></li>
         </ul>
-    <% if !@user.user_experiences.empty? %>
+    <% if !@user.bucket_list.empty? %>
     <h3>Current Bucketry List</h3>
         <table>
             <thead>
@@ -16,11 +16,11 @@
                 </tr>
             </thead>
             <tbody>
-                <% @user.user_experiences.each do |user_experience| %>
+                <% @user.bucket_list.each do |list_item| %>
                 <tr>
-                    <td><%= link_to user_experience.activity.name, activity_path(user_experience.activity) %></td>
-                    <td><%= user_experience.yes_or_no %></td>
-                    <td><%= user_experience.goal_completion_date %></td>
+                    <td><%= link_to list_item.activity.name, activity_path(list_item.activity) %></td>
+                    <td><%= list_item.yes_or_no %></td>
+                    <td><%= list_item.goal_completion_date %></td>
                 </tr>
                 <% end %>
             </tbody>
@@ -29,6 +29,14 @@
         <p><%= @user.name %>'s Bucketry List is Empty!</p>
     <% end %>
 
-        <%= button_to "Edit Profile", edit_user_path(@user), method: :get %>
-        <%= button_to "Users Page", users_path, method: :get %>
-        <%= button_to "Add to Bucket List", new_user_experience_path, method: :get %>
+<% if @user.stories.length > 0 %>
+    <h4><%= @user.name %>'s Blog</h4>
+    <% @user.stories.each do |story| %>
+    <%= render partial: 'stories/feed_element', locals: {story: story} %>
+    <% end %>
+<% end %>
+
+
+<%= button_to "Edit Profile", edit_user_path(@user), method: :get %>
+<%= button_to "Users Page", users_path, method: :get %>
+<%= button_to "Add to Bucket List", new_user_experience_path, method: :get %>
