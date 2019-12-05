@@ -1,5 +1,5 @@
-<ul class='errors'>    
+<ul class="error">    
     <% obj.errors.full_messages.each do |error| %>
-        <li><%= error %></li> 
+        <%= image_tag 'red_bucket.png', {alt: 'A red bucket', size: "25"} %> <%= error %><br /> 
     <% end %>
 </ul>

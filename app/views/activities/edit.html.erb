@@ -1,2 +1,3 @@
 <h1>Edit: <%= @activity.name %></h1>
-    <%= render partial: "form" %>
+    <%= render partial: "errors/error_form", locals: {obj: @activity} %>
+    <%= render partial: "edit_form" %>

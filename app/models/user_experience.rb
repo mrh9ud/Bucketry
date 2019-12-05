@@ -3,6 +3,7 @@ class UserExperience < ApplicationRecord
   belongs_to :user
   belongs_to :activity
   has_many :stories
+  validates :activity_id, uniqueness: { scope: :user_id, message: "This activity is already on your Bucketry list" }
   accepts_nested_attributes_for :activity, reject_if: :activity_chosen
 
   def activity_chosen
