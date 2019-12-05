@@ -14,7 +14,8 @@ class UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         if @user.valid?
-            redirect_to user_path(@user)
+            log_in(@user)
+            redirect_to root_path
         else
             render :new
         end
