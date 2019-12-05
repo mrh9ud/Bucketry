@@ -8,14 +8,20 @@ class UserExperiencesController < ApplicationController
     end
 
     def create
-        @user_experience = UserExperience.new(user_experience_params)
-        @user_experience.user_id = current_user.id
+        if (!params[:user_experience][:activity_id].blank?) && (!params[:user_experience][:activity_attributes][:name].blank? || !params[:user_experience][:activity_attributes][:description].blank?)
+            flash[:error] = "Please select only an exisiting activity OR create a new activity."
+            redirect_to new_user_experience_path
         
-        if @user_experience.valid?
-            @user_experience.save!
-            redirect_to user_path(@user_experience.user)
         else
-            render :new
+            @user_experience = UserExperience.new(user_experience_params)
+            @user_experience.user_id = current_user.id
+            
+            if @user_experience.valid?
+                @user_experience.save!
+                redirect_to user_path(@user_experience.user)
+            else
+                render :new
+            end
         end
     end
 
@@ -30,9 +36,9 @@ class UserExperiencesController < ApplicationController
     end
 
     def destroy
-        temp = @user_experience
+        user = @user_experience.user
         @user_experience.destroy
-        redirect_to user_path(temp.user)
+        redirect_to user_path(user)
     end
 
     private

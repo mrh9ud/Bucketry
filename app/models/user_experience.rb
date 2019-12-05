@@ -1,11 +1,11 @@
 class UserExperience < ApplicationRecord
+  include UserExperiencesHelper
   belongs_to :user
   belongs_to :activity
   has_many :stories
-  accepts_nested_attributes_for :activity, reject_if: :no_more_bad_data
-  # include SessionsHelper
+  accepts_nested_attributes_for :activity, reject_if: :activity_chosen
 
-  def no_more_bad_data
+  def activity_chosen
     self.activity_id
   end
 

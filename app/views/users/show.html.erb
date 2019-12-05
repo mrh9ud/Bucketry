@@ -22,18 +22,18 @@
                 </tr>
             </thead>
             <tbody>
-                <% @user.bucket_list.each do |list_item| %>
+                <% @user.bucket_list.each do |bucket_list_item| %>
                 <tr>
-                    <td><%= link_to list_item.activity.name, activity_path(list_item.activity) %></td>
-                    <td><%= list_item.yes_or_no %></td>
-                    <td><%= list_item.goal_completion_date %></td>
-                    <% if @user == current_user && !list_item.completed %>
-                        <td><%= button_to 'Mark as complete', {controller: :user_experiences, user_experience: {completed: true}, action: :update, id: list_item.id}, method: :patch %></td>
-                        <td><%= button_to 'Remove from list', {controller: :user_experiences, action: :destroy, id:list_item.id}, method: :delete %></td>
-                    <% elsif @user == current_user && list_item.completed %>
+                    <td><%= link_to bucket_list_item.activity.name, activity_path(bucket_list_item.activity) %></td>
+                    <td><%= bucket_list_item.yes_or_no %></td>
+                    <td><%= bucket_list_item.goal_completion_date %></td>
+                    <% if @user == current_user && !bucket_list_item.completed %>
+                        <td><%= button_to 'Mark as complete', {controller: :user_experiences, user_experience: {completed: true}, action: :update, id: bucket_list_item.id}, method: :patch %></td>
+                        <td><%= render partial: 'user_experiences/delete_button', locals: {bucket_list_item: bucket_list_item} %></td>
+                    <% elsif @user == current_user && bucket_list_item.completed %>
                         <td>Green checkmark</td>
-                        <td></td>
-                    <% end %>
+                        <td><%= render partial: 'user_experiences/delete_button', locals: {bucket_list_item: bucket_list_item} %></td>
+                     <% end %>
                 </tr>
                 <% end %>
             </tbody>
