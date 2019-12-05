@@ -25,7 +25,7 @@ class UserExperience < ApplicationRecord
   end
 
   def upcoming_deadline?
-    self.goal_date && self.goal_date < (Date.today + 60)
+    self.goal_date && self.goal_date < (Date.today + 60) && !self.completed
   end
 
   def goal_completion_date

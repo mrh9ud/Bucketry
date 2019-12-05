@@ -2,6 +2,13 @@
     <%= f.label :name %>
     <%= f.text_field :name %><br>
     <%= f.label :description %>
-    <%= f.text_field :description %><br>
+    <%= f.text_field :description %><br />
+
+    <%= f.label :add_this_to_bucket_list %>
+    <%= check_box_tag :add_to_bucket_list %><br />
+
+    <%= f.label :select_categories %><br />
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br />
+
     <%= f.submit %>
 <% end %>

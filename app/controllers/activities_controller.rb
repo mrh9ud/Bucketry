@@ -2,9 +2,12 @@ class ActivitiesController < ApplicationController
     before_action :set_activity, only: [:edit, :update, :show]
     before_action :require_login, only: [:new, :create, :update, :edit]
     
-
     def index
         @activities = Activity.sort_by_popularity
+    end
+
+    def show
+        @categories = @activity.categories.order(:name)
     end
 
     def new
@@ -14,6 +17,9 @@ class ActivitiesController < ApplicationController
     def create
         @activity = Activity.create(activity_params)
         if @activity.valid?
+            if params[:add_to_bucket_list]
+                UserExperience.create(user_id: current_user.id, activity_id: @activity.id, completed: false)
+            end
             redirect_to activity_path(@activity)
         else
             render :new
@@ -21,8 +27,6 @@ class ActivitiesController < ApplicationController
     end
 
     def update
-
-
         if @activity.update(activity_params)
             redirect_to activity_path(@activity)
         else
@@ -37,6 +41,6 @@ class ActivitiesController < ApplicationController
     end
 
     def activity_params
-        params.require(:activity).permit(:name, :description)
+        params.require(:activity).permit(:name, :description, :add_to_bucket_list, category_ids: [])
     end
 end

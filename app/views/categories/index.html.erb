@@ -1,0 +1,9 @@
+<h1>Categories</h1>
+
+<ul>
+    <% @categories.each do |tag| %>
+        <li><%= link_to tag.name, category_path(tag) %></li>
+    <% end %>
+</ul>
+
+Not seeing a category of interest? <%= link_to "Add your own", new_category_path %>
