@@ -5,6 +5,8 @@
             <li>Age: <%= @user.age_calculation %></li>
             <li>Alive: <%= @user.alive? %></li>
         </ul>
+
+
     <% if !@user.bucket_list.empty? %>
     <h3>Current Bucketry List</h3>
         <table>
@@ -13,6 +15,9 @@
                     <td>Activity</td>
                     <td>Completed?</td>
                     <td>Accomplish by</td>
+                <% if @user == current_user %>
+                    <td></td>
+                <% end %>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +26,11 @@
                     <td><%= link_to list_item.activity.name, activity_path(list_item.activity) %></td>
                     <td><%= list_item.yes_or_no %></td>
                     <td><%= list_item.goal_completion_date %></td>
+                    <% if @user == current_user && !list_item.completed %>
+                        <td><%= button_to 'Mark as complete', {controller: :user_experiences, user_experience: {completed: true}, action: :update, id: list_item.id}, method: :patch %></td>
+                    <% elsif @user == current_user && list_item.completed %>
+                        <td>Green checkmark</td>
+                    <% end %>
                 </tr>
                 <% end %>
             </tbody>
