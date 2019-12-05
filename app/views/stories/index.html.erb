@@ -1,0 +1,9 @@
+<h1>The Bucketry Blog</h1>
+<h2>Stories from our Community</h2>
+
+<%= render partial: 'pages/newsfeed', locals: {feed_elements: @stories } %>
+
+<%= form_with(url: stories_path, method: "get", local: true) do %>
+    <%= hidden_field_tag('blog_expand', true) %>
+    <%= submit_tag("View More Stories") %>
+<% end %>

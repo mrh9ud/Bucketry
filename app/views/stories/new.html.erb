@@ -1,0 +1,12 @@
+<h1>Add a Story to Your Bucketry Blog</h1>
+
+<%= render partial: 'errors/error_form', locals: {obj: @story} %>
+
+<%= form_for @story do |f| %>
+    <%= f.label "Select Your Bucket List Item:" %>
+    <%= f.collection_select :user_experience_id, UserExperience.where('user_id = ?', session[:user_id]), :id, :activity_name %><br />
+
+    <%= render partial: 'form', locals: {f: f} %>
+
+    <%= f.submit confirm: "Are you sure you want to submit this blog post?" %>
+<% end %>

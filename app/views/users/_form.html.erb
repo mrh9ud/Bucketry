@@ -1,0 +1,13 @@
+<%= render partial: "errors/error_form", locals: {obj: @user} %>
+
+<%= form_for @user do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %><br>
+    <%= f.label :birthdate %>
+    <%= f.date_select :birthdate, {start_year: Date.today.year - 100, end_year: Date.today.year} %><br>
+    <%= f.label :gender %>
+    <%= f.text_field :gender %><br>
+    <%= f.label :alive %>
+    <%= f.check_box :alive, checked: true %><br>
+    <%= f.submit %>
+<% end %>

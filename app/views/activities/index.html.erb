@@ -1,0 +1,22 @@
+<h1>Popular Bucketry List Items</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Activity</td>
+                <td>Number of Interested Users</td>
+            <tr>
+        </thead>
+        <tbody>
+            
+            <% @activities.each do |activity| %>
+                <tr>
+                    <td><%= link_to activity[0].name, activity_path(activity[0]) %></td>
+                    <td><%= activity[0].popularity %></td>
+                </tr>
+            <% end %>
+            </tbody>
+    </table>
+
+    <div>Can't find what you're looking for?</div>
+    <span><%= button_to "Add Your Own Activity", new_activity_path, method: :get %></span>

@@ -1,0 +1,24 @@
+<h1><%= @activity.name.titlecase %></h1>
+    <h3>Description:</h3>
+    <%= @activity.description %><br><br>
+    <table>
+        <thead>
+            <tr> 
+                <td>Users Interested in this Activity</td>
+                <td>Status</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% @activity.user_experiences.each do |user_experience| %>
+                <tr>
+                    <td><%= link_to user_experience.user.name, user_path(user_experience.user) %></td>
+                    <td><% if user_experience.completed %>
+                            Completed on <%= user_experience.completion_date %>
+                        <% else %>
+                            On the bucket list!
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>

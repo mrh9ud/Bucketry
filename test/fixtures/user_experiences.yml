@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  activity: one
+  completed: false
+  goal_date: 2019-12-02 15:57:05
+  completion_date: 2019-12-02 15:57:05
+
+two:
+  user: two
+  activity: two
+  completed: false
+  goal_date: 2019-12-02 15:57:05
+  completion_date: 2019-12-02 15:57:05

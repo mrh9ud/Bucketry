@@ -1,0 +1,58 @@
+<h1><%= @user.name %>'s Detail Page</h1>
+    <h3>Personal Details</h3>
+        <ul>
+            <li>Gender: <%= @user.gender %></li>
+            <li>Age: <%= @user.age_calculation %></li>
+            <li>Alive: <%= @user.alive? %></li>
+        </ul>
+
+
+    <% if !@user.bucket_list.empty? %>
+    <h3>Current Bucketry List</h3>
+        <table>
+            <thead>
+                <tr>
+                    <td>Activity</td>
+                    <td>Completed?</td>
+                    <td>Accomplish by</td>
+                <% if @user == current_user %>
+                    <td></td>
+                    <td></td>
+                <% end %>
+                </tr>
+            </thead>
+            <tbody>
+                <% @user.bucket_list.each do |list_item| %>
+                <tr>
+                    <td><%= link_to list_item.activity.name, activity_path(list_item.activity) %></td>
+                    <td><%= list_item.yes_or_no %></td>
+                    <td><%= list_item.goal_completion_date %></td>
+                    <% if @user == current_user && !list_item.completed %>
+                        <td><%= button_to 'Mark as complete', {controller: :user_experiences, user_experience: {completed: true}, action: :update, id: list_item.id}, method: :patch %></td>
+                        <td><%= button_to 'Remove from list', {controller: :user_experiences, action: :destroy, id:list_item.id}, method: :delete %></td>
+                    <% elsif @user == current_user && list_item.completed %>
+                        <td>Green checkmark</td>
+                        <td></td>
+                    <% end %>
+                </tr>
+                <% end %>
+            </tbody>
+        </table>
+    <% else %>
+        <p><%= @user.name %>'s Bucketry List is Empty!</p>
+    <% end %>
+
+<% if @user.stories.length > 0 %>
+    <h4><%= @user.name %>'s Blog</h4>
+    <% @user.stories.each do |story| %>
+    <%= render partial: 'stories/feed_element', locals: {story: story} %>
+    <% end %>
+<% end %>
+
+
+<%= button_to "Edit Profile", edit_user_path(@user), method: :get if @user == current_user %>
+<%= button_to "User Directory", users_path, method: :get %>
+<% if @user == current_user %>
+    <%= button_to "Add to Bucketry List", new_user_experience_path, method: :get %>
+    <%= button_to "Add a Story to Your Blog", new_story_path, method: :get %>
+<% end %>

@@ -1,0 +1,28 @@
+<h1>Add to your Bucketry List Below</h1>
+    <%= render partial: "errors/error_form", locals: {obj: @user_experience} %>
+
+    <%= form_for @user_experience do |f| %>
+        
+        
+        <h5>Add an exisiting item to your Bucketry list:</h5>
+        <%= f.collection_select :activity_id, Activity.all, :id, :name, {include_blank: true} %><br>
+        
+        <h5>or Create Your Own Bucketry List Item</h5>
+        <%= f.fields_for :activity, @activity do |act_f| %>
+            <%= act_f.label :name %>
+            <%= act_f.text_field :name %><br><br>
+            <%= act_f.label :description %>
+            <%= act_f.text_area :description %><br>
+        <% end %>
+            
+
+        <%= f.check_box :completed %>
+        <%= f.label "Check if already completed" %><br>
+        <%= f.label :completion_date %>
+        <%= f.date_select :completion_date, {start_year: Date.today.year - 100, end_year: Date.today.year, prompt: true} %><br>
+        <%= f.label :goal_date %>
+        <%= f.date_select :goal_date, {start_year: Date.today.year, end_year: Date.today.year + 40, prompt: true} %><br>
+        
+        <%= f.submit %>
+
+    <% end %>
