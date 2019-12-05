@@ -3,7 +3,7 @@ class UserExperience < ApplicationRecord
   belongs_to :user
   belongs_to :activity
   has_many :stories
-  validates :activity_id, uniqueness: { scope: :user_id, message: "This activity is already on your Bucketry list" }
+  validates :activity_id, uniqueness: { scope: :user_id, message: "This activity is already on your Bucketry list" }, on: :create
   accepts_nested_attributes_for :activity, reject_if: :activity_chosen
 
   def activity_chosen
@@ -19,7 +19,7 @@ class UserExperience < ApplicationRecord
   end
 
   def goal_completion_date
-    if self.completed
+    if self.completion_date
       self.completion_date.strftime("%d %B %Y")
     else
       if self.goal_date
