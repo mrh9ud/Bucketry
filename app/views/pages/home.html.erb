@@ -2,6 +2,15 @@
 
 <h3>Share Your Bucketry list with Friends and Family</h3>
 
+<% if logged_in? %>
+    <ul><% current_user.bucket_list.each do |bucket_list_item| %>
+        <% if bucket_list_item.goal_date && bucket_list_item.goal_date < (Date.today + 60) && !bucket_list_item.completed %>
+            <div class = "alert"><%= image_tag 'red_bucket.png', {alt: 'A red bucket', size: "25"} %> Hurry! <%= bucket_list_item.activity.name %> due on <%= bucket_list_item.goal_completion_date %></div>
+        <% end %>
+    <% end %></ul>
+<% end %>
+
 <h3>Recent Activity</h3>
+
 
 <%= render partial: 'newsfeed', locals: {feed_elements: @recent_activities} %>

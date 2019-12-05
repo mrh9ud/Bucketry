@@ -24,6 +24,10 @@ class UserExperience < ApplicationRecord
     self.activity.name
   end
 
+  def upcoming_deadline?
+    self.goal_date && self.goal_date < (Date.today + 60)
+  end
+
   def goal_completion_date
     if self.completion_date
       self.completion_date.strftime("%d %B %Y")
