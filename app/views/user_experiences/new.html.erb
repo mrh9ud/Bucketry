@@ -19,7 +19,7 @@
         <%= f.check_box :completed %>
         <%= f.label "Check if already completed" %><br>
         <%= f.label :completion_date %>
-        <%= f.date_select :completion_date, {start_year: Date.today.year - 100, end_year: Date.today.year, prompt: true} %><br>
+        <%= f.date_select :completion_date, {end_year: Date.today.year - 100, start_year: Date.today.year, prompt: true} %><br>
         <%= f.label :goal_date %>
         <%= f.date_select :goal_date, {start_year: Date.today.year, end_year: Date.today.year + 40, prompt: true} %><br>
         

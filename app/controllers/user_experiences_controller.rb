@@ -1,5 +1,5 @@
 class UserExperiencesController < ApplicationController
-    before_action :get_user_experience, only: [:update, :destroy]
+    before_action :get_user_experience, only: [:update, :destroy, :edit]
     before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
     
     def new

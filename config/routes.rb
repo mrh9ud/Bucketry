@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#index'
   resources :stories
-  resources :user_experiences, only: [:new, :create, :update, :destroy]
+  resources :user_experiences, except: [:index, :show]
   resources :categories, only: [:index, :create, :new, :show]
   resources :activities, except: :destroy
   resources :users, except: :destroy

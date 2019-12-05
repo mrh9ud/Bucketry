@@ -18,6 +18,7 @@
                 <% if @user == current_user %>
                     <td></td>
                     <td></td>
+                    <td></td>
                 <% end %>
                 </tr>
             </thead>
@@ -29,12 +30,15 @@
                     <td><%= bucket_list_item.goal_completion_date if !bucket_list_item.completed %></td>
                     <% if @user == current_user && !bucket_list_item.completed %>
                         <td><%= button_to 'Mark as complete', {controller: :user_experiences, user_experience: {completed: true}, action: :update, id: bucket_list_item.id}, method: :patch %></td>
+                        <td><%= button_to 'Edit', edit_user_experience_path(bucket_list_item), method: :get %></td>
                         <td><%= render partial: 'user_experiences/delete_button', locals: {bucket_list_item: bucket_list_item} %></td>
                     <% elsif @user == current_user && bucket_list_item.completed %>
                         <td>✅
                         <% if bucket_list_item.completion_date %>
                             &nbsp<%= bucket_list_item.goal_completion_date %>
-                        <%end%></td>
+                        <%end%>
+                        </td>
+                        <td><%= button_to 'Edit', edit_user_experience_path(bucket_list_item), method: :get %></td>
                         <td><%= render partial: 'user_experiences/delete_button', locals: {bucket_list_item: bucket_list_item} %></td>
                      <% end %>
                 </tr>
