@@ -19,7 +19,33 @@
     clear: both;
  }
 
+ form {
+    text-align: center; 
+}
+
 .profile {
-    margin-left: 92%;
+    justify-content: flex-end;
     padding-right: 25px;
+ }
+
+ h1 {
+     text-align: center;
+ }
+
+ .simple-form {
+     padding: 10px;
+ }
+
+ .button {
+    color: #212529;
+    background-color: #ffc107;
+    border-color: #ffc107;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+ }
+
+ .button:hover {
+     background-color: darkgoldenrod;
+     padding: 8px;
  }
