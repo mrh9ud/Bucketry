@@ -3,11 +3,11 @@
 
     <%= form_for @user_experience do |f| %>
         
-        <h4>Or Create Your Own Bucket List Item</h4>
         
-        <%= f.label :add_an_activity %>
+        <h5>Add an exisiting item to your Bucketry list:</h5>
         <%= f.collection_select :activity_id, Activity.all, :id, :name, {include_blank: true} %><br>
         
+        <h5>or Create Your Own Bucketry List Item</h5>
         <%= f.fields_for :activity, @activity do |act_f| %>
             <%= act_f.label :name %>
             <%= act_f.text_field :name %><br><br>

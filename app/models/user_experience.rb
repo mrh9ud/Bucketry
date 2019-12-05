@@ -19,10 +19,10 @@ class UserExperience < ApplicationRecord
 
   def goal_completion_date
     if self.completed
-      self.completion_date
+      self.completion_date.strftime("%d %B %Y")
     else
       if self.goal_date
-        self.goal_date
+        self.goal_date.strftime("%d %b %Y")
       else
         "No goal date set."
       end

@@ -22,5 +22,9 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def check_current_user(user)
+        logged_in? && current_user == user
+    end
+
 end
 

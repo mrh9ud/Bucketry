@@ -15,17 +15,25 @@ class UsersController < ApplicationController
         @user = User.create(user_params)
         if @user.valid?
             log_in(@user)
-<<<<<<< HEAD
-            redirect_to user_path(@user)
-=======
             redirect_to root_path
->>>>>>> d88ef717b854c367da25360b55e616a0797450d9
         else
             render :new
         end
     end
 
+    def edit 
+        unless check_current_user(@user)
+            flash[:error] = "You do not have access to this page."
+            redirect_to user_path(@user)
+        end
+    end
+
     def update
+        unless check_current_user(@user)
+            flash[:error] = "You do not have access to this feature."
+            redirect_to user_path(@user)
+        end
+
         if @user.update(user_params)
             redirect_to user_path(@user)
         else

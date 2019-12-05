@@ -11,8 +11,6 @@ class UserExperiencesController < ApplicationController
         @user_experience = UserExperience.new(user_experience_params)
         @user_experience.user_id = current_user.id
         
-        # byebug
-        # @user_experience.save!
         if @user_experience.valid?
             @user_experience.save!
             redirect_to user_path(@user_experience.user)
@@ -21,8 +19,7 @@ class UserExperiencesController < ApplicationController
         end
     end
 
-    def update 
-        byebug
+    def update
         @user_experience.update(user_experience_params)
 
         if @user_experience.valid?
@@ -30,6 +27,12 @@ class UserExperiencesController < ApplicationController
         else
             render :edit
         end
+    end
+
+    def destroy
+        temp = @user_experience
+        @user_experience.destroy
+        redirect_to user_path(temp.user)
     end
 
     private
