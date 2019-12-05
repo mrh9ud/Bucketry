@@ -5,6 +5,7 @@
             <tr>
                 <td>Activity</td>
                 <td>Number of Interested Users</td>
+                <td></td>
             <tr>
         </thead>
         <tbody>
@@ -13,6 +14,11 @@
                 <tr>
                     <td><%= link_to activity[0].name, activity_path(activity[0]) %></td>
                     <td><%= activity[0].popularity %></td>
+                    <td>
+                    <% if logged_in? && !UserExperience.find_by_joined(activity[0], current_user) %>
+                        <%= button_to 'Add to your bucket list', {controller: :user_experiences, user_experience: {user_id: current_user.id, activity_id: activity[0].id, completed: false, activity_attributes: {name: nil, description: nil}}, action: :create}, method: :post %>
+                    <% end %>                    
+                     </td>
                 </tr>
             <% end %>
             </tbody>

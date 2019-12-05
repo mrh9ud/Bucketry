@@ -18,7 +18,7 @@
     <span><%= button_to "Popular Bucketry List Choices", activities_path, method: :get %></span>
 
     <% if !session[:user_id] %>
-    <div><%= button_to 'Join Bucketry', new_user_path, method: :get %></div>
+        <div><%= button_to 'Join Bucketry', new_user_path, method: :get %></div>
     <% else %>
         <div><%= button_to "My Bucketry Profile", user_path(current_user), method: :get %></div>
     <% end %>

@@ -21,7 +21,7 @@ class ActivitiesController < ApplicationController
     end
 
     def update
-        
+
 
         if @activity.update(activity_params)
             redirect_to activity_path(@activity)

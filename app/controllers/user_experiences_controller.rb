@@ -25,6 +25,13 @@ class UserExperiencesController < ApplicationController
         end
     end
 
+    def edit
+        unless check_current_user(@user_experience.user)
+            flash[:error] = "You do not have access to this page."
+            redirect_to user_path(@user_experience.user)
+        end
+    end
+
     def update
         @user_experience.update(user_experience_params)
 
