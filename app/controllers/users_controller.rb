@@ -15,7 +15,11 @@ class UsersController < ApplicationController
         @user = User.create(user_params)
         if @user.valid?
             log_in(@user)
+<<<<<<< HEAD
             redirect_to user_path(@user)
+=======
+            redirect_to root_path
+>>>>>>> d88ef717b854c367da25360b55e616a0797450d9
         else
             render :new
         end

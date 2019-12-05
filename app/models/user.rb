@@ -4,7 +4,9 @@ class User < ApplicationRecord
     has_many :activities, through: :user_experiences
 
     validates :name, presence: true
+    validates :name, uniqueness: {case_sensitive: false, on: :create}
     validate :age_verification
+
 
     def age_calculation
         Time.now.year - self.birthdate.year - ((Time.now.month > self.birthdate.month || (Time.now.month == self.birthdate.month && Time.now.day >= self.birthdate.day)) ? 0 : 1)

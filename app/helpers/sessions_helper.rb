@@ -4,6 +4,10 @@ module SessionsHelper
   def log_in(user)
     session[:user_id] = user.id
     session[:name] = user.name
+<<<<<<< HEAD
+=======
+  
+>>>>>>> d88ef717b854c367da25360b55e616a0797450d9
   end
 
   # Returns the current logged-in user (if any).
