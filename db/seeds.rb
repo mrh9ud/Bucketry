@@ -17,7 +17,7 @@ LOREM_IPSUM_SHORT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Du
 ACTIVITY_OPTS = ["Skydiving", "Run a Marathon", "Publish a Book", "Date a Supermodel", "Visit Europe", "Learn to Play Guitar", "See a Broadway Show", "View the Northern Lights", "Drive Across the Continent", "Get My GED", "Learn Ruby on Rails"]
 
 20.times do
-    rand_name = ALPHABET.sample(rand(5..11)).join("")
+    rand_name = ALPHABET.sample(rand(5..11)).join("").titlecase
     User.create(name: rand_name, birthdate: DateTime.strptime("12/01/2000", "%m/%d/%Y"), gender: GENDERS.sample(), alive: true)
 end
 
