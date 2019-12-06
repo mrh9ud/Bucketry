@@ -16,7 +16,7 @@
                     <td><%= activity[0].popularity %></td>
                     <td>
                     <% if logged_in? && !UserExperience.find_by_joined(activity[0], current_user) %>
-                        <%= button_to 'Add to your bucket list', {controller: :user_experiences, user_experience: {user_id: current_user.id, activity_id: activity[0].id, completed: false, activity_attributes: {name: nil, description: nil}}, action: :create}, method: :post %>
+                        <%= button_to 'Add to your bucket list', {controller: :user_experiences, user_experience: {user_id: current_user.id, activity_id: activity[0].id, completed: false, activity_attributes: {name: nil, description: nil}}, action: :create}, {method: :post, class: 'button'} %>
                     <% end %>                    
                      </td>
                 </tr>
@@ -25,4 +25,4 @@
     </table>
 
     <div>Can't find what you're looking for?</div>
-    <span><%= button_to "Add Your Own Activity", new_activity_path, method: :get %></span>
+    <div><%= button_to "Add Your Own Activity", new_activity_path, {method: :get, class: 'button'}%></div>
