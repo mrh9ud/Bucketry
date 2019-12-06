@@ -1,3 +1,15 @@
+#top-space {
+    margin-top: 50px;
+}
+
+div.long_content {
+    overflow-wrap: break-word;
+}
+
+p.long_content {
+    overflow-wrap: break-word;
+}
+
 .center {
     display: flex;
     justify-content: center;
@@ -45,11 +57,21 @@ p {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+div {
+    font-size: 16px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h4 {
+    font-size: 16px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
 body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-color: #f5d020;
-    background-image: linear-gradient(315deg, #f5d020 0%, #f53803 74%);
+    background-image: linear-gradient(315deg, #f5d020 0%, orange, #f53803 74%);
 }
 
 .user-show {

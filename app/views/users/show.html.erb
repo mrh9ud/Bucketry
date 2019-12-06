@@ -5,7 +5,7 @@
 <% end %>
 
 <h3>Personal Details</h3>
-    <ul>
+    <ul class='newsfeed'>
         <li>Gender: <%= @user.gender %></li>
         <li>Age: <%= @user.age_calculation %></li>
         <li>Alive: <%= @user.alive? %></li>
@@ -71,12 +71,12 @@
         <p><%= @user.name %>'s Bucketry List is Empty!</p>
     <% end %>
 
-<% if @user.stories.length > 0 %>
-    <h4><%= @user.name %>'s Blog</h4>
+<div id='top-space'><% if @user.stories.length > 0 %>
+    <h3><%= @user.name %>'s Blog</h3>
     <% @user.stories.each do |story| %>
     <%= render partial: 'stories/feed_element', locals: {story: story} %>
     <% end %>
-<% end %>
+<% end %></div>
 
 <%= button_to "Edit Profile", edit_user_path(@user), {method: :get, class: 'button'} if @user == current_user %>
 <%= button_to "User Directory", users_path, {method: :get, class: 'button'} %>
