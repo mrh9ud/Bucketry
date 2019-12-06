@@ -34,7 +34,7 @@
       <span><%= button_to "Logout", {controller: :sessions, action: :logout}, {method: :post, class: 'button'} %></span>
     <% else %>
       <nav class = "profile">
-      <span><%= button_to "Login", {controler: :sessions, action: :login}, {method: :get, class: 'button'} %></span>
+      <span><%= button_to "Login", {controller: :sessions, action: :new}, {method: :get, class: 'button'} %></span>
     <% end %>
     </nav>
   <% if flash["error"] %>
