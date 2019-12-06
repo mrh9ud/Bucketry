@@ -26,5 +26,9 @@ class ApplicationController < ActionController::Base
         logged_in? && current_user == user
     end
 
+    def no_access_message
+        flash[:error] = "You do not have access to this feature."
+    end
+
 end
 

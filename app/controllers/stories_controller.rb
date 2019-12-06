@@ -26,7 +26,19 @@ class StoriesController < ApplicationController
         end
     end
 
+    def edit 
+        unless check_current_user(@story.user)
+            no_access_message
+            redirect_to story_path(@story)
+        end
+    end
+
     def update
+        unless check_current_user(@story.user)
+            no_access_message
+            redirect_to story_path(@story)
+        end
+
         @story.update(strong_params)
 
         if @story.valid?
@@ -37,9 +49,14 @@ class StoriesController < ApplicationController
     end
 
     def destroy
+        unless check_current_user(@story.user)
+            no_access_message
+            redirect_to story_path(@story)
+        end
+
         user_id = @story.user.id
         @story.destroy
-        redirect_to user_path(@story.user)
+        redirect_to user_path(user_id)
     end
 
 

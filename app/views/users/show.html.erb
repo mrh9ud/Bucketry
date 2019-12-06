@@ -13,7 +13,7 @@
 
 <% if logged_in? && current_user == @user %>
     <ul><% @upcoming_activities.each do |bucket_list_item| %>
-            <div class = "alert"><%= image_tag 'red_bucket.png', {alt: 'A red bucket', size: "25"} %> Hurry! <%= bucket_list_item.activity.name %> due on <%= bucket_list_item.goal_completion_date %></div>
+            <div class = "alert"><%= image_tag 'red_bucket.png', {alt: 'A red bucket', size: "25"} %> Hurry! <%= bucket_list_item.activity.name %> due by <%= bucket_list_item.goal_completion_date %></div>
     <% end %></ul>
 <% end %>
 

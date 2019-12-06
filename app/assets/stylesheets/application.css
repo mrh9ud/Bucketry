@@ -7,6 +7,11 @@ html {
     height: 100%;
 }
 
+hr {
+    border-top: dotted 10px black;
+    border-bottom: 0px;
+}
+
 #main-header {
     padding: 10px;
     font-size: 45px;
