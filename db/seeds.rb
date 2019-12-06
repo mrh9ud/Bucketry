@@ -12,7 +12,7 @@ ACTIVITY_OPTS = ["Skydiving", "Run a Marathon", "Publish a Book", "Date a Superm
 
 20.times do
     rand_name = ALPHABET.sample(rand(5..11)).join("").titlecase
-    rand_year = rand(1950..2001)
+    rand_year = rand(1950..200)
     User.create(name: rand_name, 
         birthdate: DateTime.strptime("12/01/#{rand_year}", "%m/%d/%Y"),
         gender: GENDERS.sample(),
