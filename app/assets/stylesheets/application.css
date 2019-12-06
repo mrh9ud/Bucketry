@@ -48,3 +48,7 @@ h1 {
     background-color: darkred;
     padding: 8px;
 }
+
+.newsfeed {
+    list-style-type: none;
+}
