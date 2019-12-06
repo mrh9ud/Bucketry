@@ -3,8 +3,14 @@ class UserExperience < ApplicationRecord
   belongs_to :user
   belongs_to :activity
   has_many :stories
+  validates_inclusion_of :completed, in: [true, false]
   validates :activity_id, uniqueness: { scope: :user_id, message: "This activity is already on your Bucketry list" }, on: :create
   accepts_nested_attributes_for :activity, reject_if: :activity_chosen
+
+
+  def self.find_by_joined(activity, user)
+    UserExperience.find_by(activity_id: activity.id, user_id: user.id)
+  end
 
   def activity_chosen
     self.activity_id
@@ -16,6 +22,10 @@ class UserExperience < ApplicationRecord
 
   def activity_name #method used in collection_select when creating story
     self.activity.name
+  end
+
+  def upcoming_deadline?
+    self.goal_date && self.goal_date < (Date.today + 60) && !self.completed
   end
 
   def goal_completion_date

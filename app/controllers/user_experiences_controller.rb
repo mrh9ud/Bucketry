@@ -1,5 +1,5 @@
 class UserExperiencesController < ApplicationController
-    before_action :get_user_experience, only: [:update, :destroy]
+    before_action :get_user_experience, only: [:update, :destroy, :edit]
     before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
     
     def new
@@ -22,6 +22,13 @@ class UserExperiencesController < ApplicationController
             else
                 render :new
             end
+        end
+    end
+
+    def edit
+        unless check_current_user(@user_experience.user)
+            flash[:error] = "You do not have access to this page."
+            redirect_to user_path(@user_experience.user)
         end
     end
 

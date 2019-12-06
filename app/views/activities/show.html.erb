@@ -1,4 +1,10 @@
 <h1><%= @activity.name.titlecase %></h1>
+
+    <span><% @categories.each do |category| %>
+        <%= link_to category.name, category_path(category) %>
+    <% end %>
+    </span>
+
     <h3>Description:</h3>
     <%= @activity.description %><br><br>
     <table>

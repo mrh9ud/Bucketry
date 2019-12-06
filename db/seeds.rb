@@ -1,10 +1,4 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz".split("")
 GENDERS = ['male', 'female', 'm', 'f', 'woman', 'man', 'non-binary', '']
@@ -43,3 +37,21 @@ UserExperience.find(3).update(completed: true)
 UserExperience.find(4).update(completed: true)
 UserExperience.find(5).update(completed: true)
 User.find(10).update(alive: false)
+
+Category.create(name: "Yodeling")
+Category.create(name: "Outdoors")
+Category.create(name: "Travel")
+Category.create(name: "Adventure")
+Category.create(name: "Personal Growth")
+
+Category.create(name: "Exercise")
+Category.create(name: "Potent Potables")
+Category.create(name: "Skills")
+Category.create(name: "Relationships")
+Category.create(name: "Sports")
+
+20.times do
+    selected_category = Category.all.sample
+    selected_activity = Activity.all.sample
+    CategoryActivity.create(category: selected_category, activity: selected_activity)
+end

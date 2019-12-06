@@ -6,6 +6,13 @@
             <li>Alive: <%= @user.alive? %></li>
         </ul>
 
+<% if logged_in? && current_user == @user %>
+    <ul><% @upcoming_activities.each do |bucket_list_item| %>
+            <div class = "alert"><%= image_tag 'red_bucket.png', {alt: 'A red bucket', size: "25"} %> Hurry! <%= bucket_list_item.activity.name %> due on <%= bucket_list_item.goal_completion_date %></div>
+    <% end %></ul>
+<% end %>
+
+
     <% if !@user.bucket_list.empty? %>
     <h3>Current Bucketry List</h3>
         <table>
@@ -17,6 +24,7 @@
                 <% if @user == current_user %>
                     <td></td>
                     <td></td>
+                    <td></td>
                 <% end %>
                 </tr>
             </thead>
@@ -24,16 +32,30 @@
                 <% @user.bucket_list.each do |bucket_list_item| %>
                 <tr>
                     <td><%= link_to bucket_list_item.activity.name, activity_path(bucket_list_item.activity) %></td>
+                    
                     <td><%= bucket_list_item.yes_or_no %></td>
-                    <td><%= bucket_list_item.goal_completion_date if !bucket_list_item.completed %></td>
+                    
+                    <td>
+                    <% if bucket_list_item.upcoming_deadline? %>
+                        <div class="alert">
+                    <% else %>
+                        <div>
+                    <% end %>
+                    <%= bucket_list_item.goal_completion_date if !bucket_list_item.completed %>
+                        </div>
+                    </td>
+                    
                     <% if @user == current_user && !bucket_list_item.completed %>
                         <td><%= button_to 'Mark as complete', {controller: :user_experiences, user_experience: {completed: true}, action: :update, id: bucket_list_item.id}, method: :patch %></td>
+                        <td><%= button_to 'Edit', edit_user_experience_path(bucket_list_item), method: :get %></td>
                         <td><%= render partial: 'user_experiences/delete_button', locals: {bucket_list_item: bucket_list_item} %></td>
                     <% elsif @user == current_user && bucket_list_item.completed %>
                         <td>✅
                         <% if bucket_list_item.completion_date %>
                             &nbsp<%= bucket_list_item.goal_completion_date %>
-                        <%end%></td>
+                        <%end%>
+                        </td>
+                        <td><%= button_to 'Edit', edit_user_experience_path(bucket_list_item), method: :get %></td>
                         <td><%= render partial: 'user_experiences/delete_button', locals: {bucket_list_item: bucket_list_item} %></td>
                      <% end %>
                 </tr>

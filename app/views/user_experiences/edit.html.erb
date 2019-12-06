@@ -1,1 +1,15 @@
-Edit Form Feature Not Yet Under Development
+<h1>Edit Your Bucketry Goal</h1>
+    <%= render partial: "errors/error_form", locals: {obj: @user_experience} %>
+
+    <%= form_for @user_experience do |f| %>
+        <h3><%= @user_experience.activity.name %></h3>
+
+        <%= f.check_box :completed %>
+        <%= f.label "Check if completed" %><br>
+        <%= f.label :completion_date %>
+        <%= f.date_select :completion_date, {end_year: Date.today.year - 100, start_year: Date.today.year, prompt: true} %><br>
+        <%= f.label :goal_date %>
+        <%= f.date_select :goal_date, {start_year: Date.today.year, end_year: Date.today.year + 40, prompt: true} %><br>
+        
+        <%= f.submit %>
+    <% end %>
