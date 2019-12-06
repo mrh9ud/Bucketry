@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_secure_password
+    
     has_many :user_experiences
     has_many :stories, through: :user_experiences
     has_many :activities, through: :user_experiences
@@ -6,6 +8,7 @@ class User < ApplicationRecord
     validates :name, presence: true
     validates :name, uniqueness: {case_sensitive: false, on: :create}
     validate :age_verification
+
 
 
     def age_calculation
