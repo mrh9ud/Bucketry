@@ -12,9 +12,18 @@ ACTIVITY_OPTS = ["Skydiving", "Run a Marathon", "Publish a Book", "Date a Superm
 
 20.times do
     rand_name = ALPHABET.sample(rand(5..11)).join("").titlecase
-    rand_year = rand(1950..2000)
+    rand_year = rand(1950..2018)
+    rand_month = rand(1..12)
+        if [4, 6, 9, 11].include?(rand_month)
+            rand_day = rand(1..30)
+        elsif rand_month == 2
+            rand_day = rand(1..28)
+        else
+            rand_day = rand(1..31)
+        end
+
     User.create(name: rand_name, 
-        birthdate: DateTime.strptime("12/01/#{rand_year}", "%m/%d/%Y"),
+        birthdate: DateTime.new(rand_year, rand_month, rand_day),
         gender: GENDERS.sample(),
         alive: true,
         password_digest: BCrypt::Password.create('inspiration')

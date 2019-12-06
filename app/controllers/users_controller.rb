@@ -27,14 +27,14 @@ class UsersController < ApplicationController
 
     def edit 
         unless check_current_user(@user)
-            flash[:error] = "You do not have access to this page."
+            no_access_message
             redirect_to user_path(@user)
         end
     end
 
     def update
         unless check_current_user(@user)
-            flash[:error] = "You do not have access to this feature."
+            no_access_message
             redirect_to user_path(@user)
         end
 

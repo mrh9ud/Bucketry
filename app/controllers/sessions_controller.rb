@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
                 redirect_to login_path
             end
         else
-            flash["error"] = "No user with that name. Try again."
+            flash["error"] = "No user with that name. Please try again."
             redirect_to login_path
         end
     end
