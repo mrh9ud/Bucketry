@@ -1,15 +1,20 @@
 <h1><%= @category.name.titlecase %> Activities</h1>
 
-<table>
-    <tbody>
-    <% @activities.each do |activity| %>
-        <tr>
-            <td><%= link_to activity.name, activity_path(activity) %></td>
-            <td>            
-                <% if logged_in? && !UserExperience.find_by_joined(activity, current_user) %>
-                    <%= button_to 'Add to your bucket list', {controller: :user_experiences, user_experience: {user_id: current_user.id, activity_id: activity.id, completed: false, activity_attributes: {name: nil, description: nil}}, action: :create}, {method: :post, class: 'button' } %>
-                <% end %>  
-            </td>
-    <% end %>
-    </tbody>
-</table>
+<% if @activities.count > 0 %>
+    <table>
+        <tbody>
+        <% @activities.each do |activity| %>
+            <tr>
+                <td><%= link_to activity.name, activity_path(activity) %></td>
+                <td>            
+                    <% if logged_in? && !UserExperience.find_by_joined(activity, current_user) %>
+                        <%= button_to 'Add to your bucket list', {controller: :user_experiences, user_experience: {user_id: current_user.id, activity_id: activity.id, completed: false, activity_attributes: {name: nil, description: nil}}, action: :create}, {method: :post, class: 'button' } %>
+                    <% end %>  
+                </td>
+        <% end %>
+        </tbody>
+    </table>
+<% else %>
+<h2>No current Bucketry activites are associated with this category.</h2>
+<%= button_to "Would you like to add one?", new_activity_path, {method: :get, class: 'button' %>
+<% end %>
