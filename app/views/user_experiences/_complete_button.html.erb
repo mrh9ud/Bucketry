@@ -1,4 +1,4 @@
 <%= form_for :user_experience, method: :local_method do |f| %>
     <%= f.hidden_field :completed, value: true %>
-<%= f.submit "Mark complete" %>
+<%= f.submit "Mark complete", class: 'button' %>
 <% end %>

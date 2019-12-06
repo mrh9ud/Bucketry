@@ -1,16 +1,20 @@
-<div class="login">
-    <div><h1>Login to Bucketry</h1></div>
+<div><h1>Login to Bucketry</h1></div>
 
 <div class="error"><% if flash["error"] %>
     <div class="error"><%= flash["error"] %></div>
 <% end %></div>
 
-<div class = "simple-form"><%= form_tag "/login", method: :post do %>
+<div class = "simple-form">
+
+
+<%= form_tag login_path, method: :post do %>
     <%= label_tag :name %>
-    <%= text_field_tag :name %><br /><br>
+    <%= text_field_tag :name %><br />
+
+    <%= label_tag :password %>
+    <%= password_field_tag :password %><br />
+    
     <%= submit_tag "Login", {class: 'button'} %>
 <% end %></div>
 
-<%= button_to "Create an Account", new_user_path, {method: :get, class: 'button'} %>
-
-</div>
+<div class='center'><%= button_to "Create an Account", new_user_path, {method: :get, class: 'button'} %></div>

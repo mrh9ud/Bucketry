@@ -10,14 +10,20 @@ class SessionsController < ApplicationController
     end
 
     def create
-        name = params[:name]
-        user = User.find_by(name: name)
-        if user
-            session[:name] = params[:name]
-            session[:user_id] = user.id
-            log_in(user)
-            redirect_to root_path
-        else flash["error"] = "No user with that name. Try again."
+        user = User.find_by(name: params[:name])
+        # byebug
+        if user 
+            if user.authenticate(params[:password])
+                session[:name] = params[:name]
+                session[:user_id] = user.id
+                log_in(user)
+                redirect_to root_path
+            else
+                flash["error"] = "Password not correct. Please try again."
+                redirect_to login_path
+            end
+        else
+            flash["error"] = "No user with that name. Try again."
             redirect_to login_path
         end
     end

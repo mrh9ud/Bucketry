@@ -10,4 +10,5 @@
     </tbody
 </table>
 
-Not seeing a category of interest? <%= link_to "Add your own", new_category_path %>
+Not seeing a category of interest? 
+<%= button_to "Add your own", new_category_path, {method: :get, class: 'button'} %>

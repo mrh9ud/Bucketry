@@ -40,6 +40,11 @@
   <% if flash["error"] %>
     <div class="error"><%= image_tag 'red_bucket.png', {alt: 'A red bucket', size: "25"} %> <%= flash["error"] %></div>
   <% end %>
+
+
+  <% if current_user && current_user.birthday? %>
+    <h2>🎂 Happy Birthday! 🎂</h2>
+  <% end %>
     <%= yield %>
 
   </body>

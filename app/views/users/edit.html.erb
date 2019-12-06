@@ -1,5 +1,5 @@
 <h1>Edit <%= @user.name %>'s Profile</h1>
 
-<%= render partial: "form" %>
+<%= render partial: "form", locals: {submit_text: 'Edit Profile'} %>
 
-<%= button_to "Add to your Bucketry List", new_user_experience_path, method: :get %>
+<%= button_to "Add to your Bucketry List", new_user_experience_path, {method: :get, class: 'button'} %>

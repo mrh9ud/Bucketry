@@ -1,10 +1,15 @@
 <h1><%= @user.name %>'s Detail Page</h1>
-    <h3>Personal Details</h3>
-        <ul>
-            <li>Gender: <%= @user.gender %></li>
-            <li>Age: <%= @user.age_calculation %></li>
-            <li>Alive: <%= @user.alive? %></li>
-        </ul>
+
+<% if @user.birthday? && @user != current_user %>
+    <h2>🎂 It's <%= @user.name %>'s' birthday today! 🎂</h2>
+<% end %>
+
+<h3>Personal Details</h3>
+    <ul>
+        <li>Gender: <%= @user.gender %></li>
+        <li>Age: <%= @user.age_calculation %></li>
+        <li>Alive: <%= @user.alive? %></li>
+    </ul>
 
 <% if logged_in? && current_user == @user %>
     <ul><% @upcoming_activities.each do |bucket_list_item| %>
@@ -46,8 +51,8 @@
                     </td>
                     
                     <% if @user == current_user && !bucket_list_item.completed %>
-                        <td><%= button_to 'Mark as complete', {controller: :user_experiences, user_experience: {completed: true}, action: :update, id: bucket_list_item.id}, method: :patch %></td>
-                        <td><%= button_to 'Edit', edit_user_experience_path(bucket_list_item), method: :get %></td>
+                        <td><%= button_to 'Mark as complete', {controller: :user_experiences, user_experience: {completed: true}, action: :update, id: bucket_list_item.id}, {method: :patch, class: 'button'} %></td>
+                        <td><%= render partial: 'user_experiences/edit_button', locals: {bucket_list_item: bucket_list_item} %></td>
                         <td><%= render partial: 'user_experiences/delete_button', locals: {bucket_list_item: bucket_list_item} %></td>
                     <% elsif @user == current_user && bucket_list_item.completed %>
                         <td>✅
@@ -55,7 +60,7 @@
                             &nbsp<%= bucket_list_item.goal_completion_date %>
                         <%end%>
                         </td>
-                        <td><%= button_to 'Edit', edit_user_experience_path(bucket_list_item), method: :get %></td>
+                        <td><%= render partial: 'user_experiences/edit_button', locals: {bucket_list_item: bucket_list_item} %></td>
                         <td><%= render partial: 'user_experiences/delete_button', locals: {bucket_list_item: bucket_list_item} %></td>
                      <% end %>
                 </tr>
@@ -73,9 +78,9 @@
     <% end %>
 <% end %>
 
-<span class='user-show'><%= button_to "Edit Profile", edit_user_path(@user), method: :get if @user == current_user %></span>
-<span class='user-show'><%= button_to "User Directory", users_path, method: :get %></span>
+<%= button_to "Edit Profile", edit_user_path(@user), {method: :get, class: 'button'} if @user == current_user %>
+<%= button_to "User Directory", users_path, {method: :get, class: 'button'} %>
 <% if @user == current_user %>
-    <span class='user-show'><%= button_to "Add to Your Bucketry List", new_user_experience_path, method: :get %></span>
-    <span class='user-show'><%= button_to "Add a Story to Your Blog", new_story_path, method: :get %></span>
+    <%= button_to "Add to Your Bucketry List", new_user_experience_path, {method: :get, class: 'button'} %>
+    <%= button_to "Add a Story to Your Blog", new_story_path, {method: :get, class: 'button'} %>
 <% end %>

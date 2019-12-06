@@ -1,5 +1,5 @@
 <%= form_for @activity do |f| %>
     <%= f.label :description %>
-    <%= f.text_field :description %><br>
-    <%= f.submit %>
+    <%= f.text_area :description, size: '75x15' %><br>
+    <%= f.submit "Submit changes", class: 'button' %>
 <% end %>

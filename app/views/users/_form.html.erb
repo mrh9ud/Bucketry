@@ -3,12 +3,17 @@
 <%= form_for @user do |f| %>
     <div class='form-field'><%= f.label :name %>
     <%= f.text_field :name %></div>
+    
+    <div class='form-field'><%= f.label :password %>
+    <%= f.password_field :password %></div>
+    <div class='form-field'><%= f.label :password_confirmation%>
+    <%= f.password_field :password_confirmation%></div>
+
     <div class='form-field'><%= f.label :birthdate %>
     <%= f.date_select :birthdate, {start_year: Date.today.year - 100, end_year: Date.today.year} %></div>
     <div class='form-field'><%= f.label :gender %>
     <%= f.text_field :gender %></div>
     <div class='form-field'><%= f.label :alive %>
     <%= f.check_box :alive, checked: true %></div>
-    <span><%= f.submit 'Create User', {class: 'button'} %></span>
+    <span><%= f.submit submit_text, {class: 'button'} %></span>
 <% end %>
-
