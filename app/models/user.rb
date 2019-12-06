@@ -9,7 +9,9 @@ class User < ApplicationRecord
     validates :name, uniqueness: {case_sensitive: false, on: :create}
     validate :age_verification
 
-
+    def birthday?
+        birthdate.day == Time.now.day && birthdate.month == Time.now.month
+    end
 
     def age_calculation
         Time.now.year - self.birthdate.year - ((Time.now.month > self.birthdate.month || (Time.now.month == self.birthdate.month && Time.now.day >= self.birthdate.day)) ? 0 : 1)

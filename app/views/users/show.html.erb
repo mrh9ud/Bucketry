@@ -1,10 +1,15 @@
 <h1><%= @user.name %>'s Detail Page</h1>
-    <h3>Personal Details</h3>
-        <ul>
-            <li>Gender: <%= @user.gender %></li>
-            <li>Age: <%= @user.age_calculation %></li>
-            <li>Alive: <%= @user.alive? %></li>
-        </ul>
+
+<% if @user.birthday? && @user != current_user %>
+    <h2>🎂 It's <%= @user.name %>'s' birthday today! 🎂</h2>
+<% end %>
+
+<h3>Personal Details</h3>
+    <ul>
+        <li>Gender: <%= @user.gender %></li>
+        <li>Age: <%= @user.age_calculation %></li>
+        <li>Alive: <%= @user.alive? %></li>
+    </ul>
 
 <% if logged_in? && current_user == @user %>
     <ul><% @upcoming_activities.each do |bucket_list_item| %>
