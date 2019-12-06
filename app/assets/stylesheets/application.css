@@ -2,12 +2,55 @@ html {
     height: 100%;
 }
 
-body {
+#main-header {
+    padding: 10px;
+    font-size: 45px;
+}
 
+h2 {
+    text-align: center
+}
+
+a:hover {
+    background-color: rgb(248, 246, 241);
+}
+a:link {
+    color: rgb(52, 39, 236);
+}
+
+a:visited {
+    color: rgb(42, 9, 61);
+}
+
+h1 {
+    font-size: 200%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;  
+    line-height: 13.2px;
+    text-align: center;
+   }
+   
+h3 {
+    font-size: 24px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    line-height: 30px;
+}
+
+p {
+    font-size: 16px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-color: #f5d020;
     background-image: linear-gradient(315deg, #f5d020 0%, #f53803 74%);
+}
+
+.user-show {
+    display: inline-block;
+    clear: both;
+    margin-top: 10px;
 }
 
  nav span {
@@ -24,16 +67,18 @@ body {
     padding-right: 25px;
  }
 
-h1 {
-     text-align: center;
+ .simple-form {
+    margin-top: 5px; 
+    padding: 5px;
  }
 
- .simple-form {
-     padding: 10px;
+ .form-field {
+    margin-top: 5px;
+    margin-bottom: 5px;
  }
 
  .button {
-    color: #212529;
+    color: #000000;
     background-color: #ffc107;
     cursor: pointer;
     text-align: center;
@@ -47,10 +92,11 @@ h1 {
 
  .home-bar .button {
     color: #212529;
-    background-color: rgb(126, 50, 10);
+    background-color: rgb(204, 174, 158);;
     cursor: pointer;
     text-align: center;
     padding: 5px; 
+    margin-bottom: 5px;
  }
 
 .home-bar .button:hover {
