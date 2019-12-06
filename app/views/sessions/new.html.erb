@@ -11,6 +11,6 @@
     <%= submit_tag "Login", {class: 'button'} %>
 <% end %></div>
 
-<%= button_to "Create an Account", {action: "new", method: :get}, {class: 'button'} %>
+<%= button_to "Create an Account", new_user_path, {method: :get, class: 'button'} %>
 
 </div>
