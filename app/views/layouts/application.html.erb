@@ -12,29 +12,29 @@
   </head>
 
   <body>
-  <nav>
-    <span class='nav'><%= button_to "Home", root_path, method: :get %></span>
-    <span><%= button_to "About Us", about_path, method: :get %></span>
-    <span><%= button_to "Blog", stories_path, method: :get %></span>
-    <span><%= button_to "Community Page", users_path, method: :get %></span>
-    <span><%= button_to "Add Items to Your Bucketry List", activities_path, method: :get %></span>
-    <span><%= button_to "Bucketry Categories", categories_path, method: :get %></span>
+  <nav class = 'home-bar'>
+    <span><%= button_to "Home", {controller: :pages, action: :index}, {method: :get, class: 'button'} %></span>
+    <span><%= button_to "About Us", {controller: :pages, action: :about}, {method: :get, class: 'button'} %></span>
+    <span><%= button_to "Blog", {controller: :stories, action: :index}, {method: :get, class: 'button'} %></span>
+    <span><%= button_to "Community Page", {controller: :users, action: :index}, {method: :get, class: 'button'} %></span>
+    <span><%= button_to "Add Items to Your Bucketry List", {controller: :activities, action: :index}, {method: :get, class: 'button'} %></span>
+    <span><%= button_to "Bucketry Categories", {controller: :categories, action: :index}, {method: :get, class: 'button'} %></span>
 
     <% if !session[:user_id] %>
-        <span><%= button_to 'Join Bucketry', new_user_path, method: :get %></span>
+        <span><%= button_to 'Join Bucketry', {controller: :users, action: :new}, {method: :get, class: 'button'} %></span>
         </nav>  
     <% else %>
         </nav>
         <nav class = "profile">
-        <span><%= button_to "My Bucketry Profile", user_path(current_user), method: :get %></span>
+        <span><%= button_to "My Bucketry Profile", {controller: :users, action: :show, id: session[:user_id]}, {method: :get, class: 'button'} %></span>
     <% end %>
 
     <% if session[:user_id] %>
       <span>Hello, <%= session[:name] %></span>
-      <span><%= button_to "Logout", logout_path, method: :post %></span>
+      <span><%= button_to "Logout", {controller: :sessions, action: :logout}, {method: :post, class: 'button'} %></span>
     <% else %>
       <nav class = "profile">
-      <span><%= button_to "Login", login_path, method: :get %></span>
+      <span><%= button_to "Login", {controler: :sessions, action: :login}, {method: :get, class: 'button'} %></span>
     <% end %>
     </nav>
   <% if flash["error"] %>
