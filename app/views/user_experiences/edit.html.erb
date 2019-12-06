@@ -11,5 +11,5 @@
         <%= f.label :goal_date %>
         <%= f.date_select :goal_date, {start_year: Date.today.year, end_year: Date.today.year + 40, prompt: true} %><br>
         
-        <%= f.submit %>
+        <%= f.submit class: 'button' %>
     <% end %>

@@ -19,8 +19,12 @@
     clear: both;
  }
 
- form {
+form {
     text-align: center; 
+}
+
+.button_to {
+    text-align: left;
 }
 
 .profile {
