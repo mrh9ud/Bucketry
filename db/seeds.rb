@@ -14,7 +14,6 @@ ACTIVITY_OPTS = ["Skydiving", "Run a Marathon", "Publish a Book", "Date a Superm
     rand_name = ALPHABET.sample(rand(5..11)).join("").titlecase
     rand_year = rand(1950..2018)
     rand_month = rand(1..12)
-    puts "Month: #{rand_month}"
         if [4, 6, 9, 11].include?(rand_month)
             rand_day = rand(1..30)
         elsif rand_month == 2
@@ -22,9 +21,7 @@ ACTIVITY_OPTS = ["Skydiving", "Run a Marathon", "Publish a Book", "Date a Superm
         else
             rand_day = rand(1..31)
         end
-    puts "#{rand_year}/#{rand_month}/#{rand_day}"
-    puts DateTime.new(rand_year, rand_month, rand_day)
-    puts "---------------"
+
     User.create(name: rand_name, 
         birthdate: DateTime.new(rand_year, rand_month, rand_day),
         gender: GENDERS.sample(),
