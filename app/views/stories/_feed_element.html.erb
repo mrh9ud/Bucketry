@@ -1,3 +1,3 @@
 <h4><div><%= story.user.name %> added a story to <%= story.user.possessive_pronoun %> Bucketry blog <%= display_relevant_date story %> <%= display_relevant_time story %>!</div></h4>
 <h3><%= link_to story.title, story_path(story) %></h4>
-<p><%= story.content[0..399] %>...</p>
+<p class='long_content'><%= story.content[0..399] %></p>
